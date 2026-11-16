@@ -11,7 +11,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- Menambahkan Font 'Space Grotesk' khusus untuk judul karya -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@300;400;500&family=Space+Grotesk:wght@600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,12 +26,13 @@
                         sans: ['Inter', 'sans-serif'],
                         display: ['Syne', 'sans-serif'],
                         handwriting: ['Caveat', 'cursive'],
+                        project: ['Space Grotesk', 'sans-serif'], /* Font baru untuk judul karya */
                     },
                     colors: {
-                        dark: '#050505', /* Hitam sangat pekat */
-                        darker: '#0a0a0a', /* Hitam dengan sedikit kedalaman */
-                        darkest: '#000000', /* Hitam murni */
-                        accent: '#00E676', /* Hijau premium neon modern */
+                        dark: '#050505', 
+                        darker: '#0a0a0a', 
+                        darkest: '#000000', 
+                        accent: '#00E676', 
                     }
                 }
             }
@@ -38,13 +40,11 @@
     </script>
 
     <style>
-        /* Custom Styles for Animations */
         body {
             background-color: #050505;
             color: #f5f5f5;
         }
 
-        /* Hide scrollbar for a cleaner look */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -59,7 +59,6 @@
             background: #00E676;
         }
 
-        /* Reveal Animation Classes */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -68,11 +67,6 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Custom image hover overlay */
-        .project-overlay {
-            background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0) 100%);
         }
     </style>
 </head>
@@ -87,7 +81,7 @@
                 <a href="#works" class="hover:text-white transition-colors duration-300">Karya</a>
                 <a href="#contact" class="hover:text-white transition-colors duration-300">Kontak</a>
             </div>
-            <!-- Mobile Menu Button (Visual Only for this demo) -->
+            <!-- Mobile Menu Button -->
             <button class="md:hidden text-white text-xl">
                 <i class="fas fa-bars"></i>
             </button>
@@ -96,30 +90,27 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <!-- Abstract glowing background (Subtle green glow) -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent opacity-[0.07] rounded-full blur-[100px] pointer-events-none"></div>
         
         <div class="max-w-7xl mx-auto px-6 md:px-12 w-full text-center z-10 reveal">
             <h2 class="font-handwriting text-accent text-4xl md:text-5xl mb-2 transform -rotate-2">Graphic Design</h2>
-            <!-- Ukuran teks disesuaikan dengan viewport width [14vw] di mobile agar tidak terpotong -->
             <h1 class="text-[14vw] sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold leading-none tracking-tighter mb-6">
                 PORTFOLIO
             </h1>
             <p class="max-w-2xl mx-auto text-xl md:text-2xl text-gray-300 font-light mb-12">
                 By <span class="font-semibold text-white">Rafi Alfarisy</span>
             </p>
-            <a href="#about" class="inline-flex items-center space-x-3 text-white border-b border-white/30 pb-2 hover:border-white transition-colors duration-300 group">
-                <span class="font-medium tracking-wide text-sm uppercase">Mulai Kenalan</span>
+            <a href="#works" class="inline-flex items-center space-x-3 text-white border-b border-white/30 pb-2 hover:border-white transition-colors duration-300 group">
+                <span class="font-medium tracking-wide text-sm uppercase">Lihat Karya</span>
                 <i class="fas fa-arrow-down text-xs transform group-hover:translate-y-1 transition-transform duration-300"></i>
             </a>
         </div>
     </section>
 
-    <!-- Profile/Resume Section (Dipindah ke atas) -->
+    <!-- Profile/Resume Section -->
     <section id="about" class="py-32 bg-darker border-y border-white/10 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             
-            <!-- Bio Row -->
             <div class="flex flex-col lg:flex-row gap-16 mb-24 reveal">
                 <div class="lg:w-1/2">
                     <h2 class="font-handwriting text-accent text-3xl md:text-4xl mb-2">Hello I'm</h2>
@@ -129,7 +120,6 @@
                         My name is Muhammad Rafi Alfarisy. I am a graphic designer who has studied the world of design in 2018. I am a graphic designer who has design knowledge and is currently still working in a Pharmaceutical company.
                     </p>
                     
-                    <!-- Contact Info -->
                     <div class="flex flex-col space-y-4 text-sm text-gray-300">
                         <a href="https://instagram.com/rafialfrsy" target="_blank" class="flex items-center space-x-3 hover:text-white transition-colors">
                             <i class="fab fa-instagram text-xl w-6"></i>
@@ -146,13 +136,9 @@
                     </div>
                 </div>
                 
-                <!-- Abstract Portrait Placeholder -->
                 <div class="lg:w-1/2 flex items-center justify-center">
                     <div class="relative w-full max-w-md aspect-square rounded-2xl bg-gradient-to-tr from-dark to-darker border border-white/20 overflow-hidden group">
-                        <!-- FOTO PROFIL ANDA (Ganti file profil.jpg di folder assets/images) -->
-                        <img src="assets/images/profil.jpg" alt="Rafi Alfarisy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700">
-                        
-                        <!-- Fallback jika gambar belum ada -->
+                        <img src="assets/images/profil.jpg" alt="Rafi Alfarisy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" class="object-cover w-full h-full">
                         <div class="absolute inset-0 hidden flex-col items-center justify-center text-gray-300">
                             <i class="fas fa-camera text-4xl mb-3"></i>
                             <span class="text-sm tracking-widest uppercase text-gray-200">Foto Profil Anda</span>
@@ -161,10 +147,7 @@
                 </div>
             </div>
 
-            <!-- Resume Grid (Edu, Exp, Tools) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 border-t border-white/10 pt-20 reveal">
-                
-                <!-- Education -->
                 <div>
                     <h3 class="text-3xl font-display font-bold text-white mb-8">Education</h3>
                     <div class="space-y-8">
@@ -183,7 +166,6 @@
                     </div>
                 </div>
 
-                <!-- Experience -->
                 <div>
                     <h3 class="text-3xl font-display font-bold text-white mb-8">Experience</h3>
                     <div class="space-y-8">
@@ -196,7 +178,6 @@
                     </div>
                 </div>
 
-                <!-- Software Skills -->
                 <div>
                     <h3 class="text-3xl font-display font-bold text-white mb-8">Software</h3>
                     <div class="flex flex-wrap gap-4">
@@ -210,89 +191,93 @@
                             <span class="font-display font-bold text-[#9999ff]">Pr</span>
                         </div>
                         <div class="flex flex-col items-center justify-center w-16 h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
-                            <!-- Custom Capcut Icon placeholder -->
                             <i class="fas fa-video text-white text-xl"></i>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section>
 
-    <!-- Works Section (Dipindah ke bawah Profil) -->
+    <!-- WORKS SECTION (CONTINUOUS SCROLL LAYOUT) -->
     <section id="works" class="py-24 bg-dark">
-        <div class="max-w-7xl mx-auto px-6 md:px-12">
-            <div class="flex justify-between items-end mb-16 reveal">
-                <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight">Karya Pilihan</h2>
-                <p class="hidden md:block text-accent text-sm uppercase tracking-widest">( 2024 — 2026 )</p>
+        <div class="max-w-5xl mx-auto px-4 md:px-8">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">Karya Desain</h2>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
             </div>
 
-            <!-- Portfolio Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <!-- Susunan Vertikal Menyatu (Flex Column) -->
+            <div class="flex flex-col gap-20 md:gap-32">
                 
-                <!-- Project 1 -->
-                <a href="#" class="group block reveal">
-                    <div class="relative overflow-hidden rounded-lg aspect-[4/5] bg-darker border border-white/5">
-                        <!-- Foto Karya: Seduh Rasa -->
-                        <img src="assets/images/seduh-rasa.jpg" alt="Seduh Rasa Brand Identity" onerror="this.src='image_48cae3.jpg'" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-in-out opacity-90 group-hover:opacity-100 filter brightness-90 group-hover:brightness-100">
-                        <div class="absolute inset-0 project-overlay opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
-                        
-                        <!-- Details on hover -->
-                        <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-xs uppercase tracking-widest text-accent mb-2">Brand Identity / Logo</p>
-                            <h3 class="text-2xl font-display font-semibold text-white">Seduh Rasa</h3>
-                        </div>
+                <!-- Karya 1: Seduh Rasa -->
+                <div class="reveal w-full">
+                    <div class="mb-6 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Brand Identity</span>
+                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Seduh Rasa</h3>
                     </div>
-                </a>
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="assets/images/seduh-rasa.jpg" alt="Seduh Rasa" onerror="this.src='https://placehold.co/1000x600/121212/00E676?text=Upload+seduh-rasa.jpg+di+GitHub'" class="w-full object-cover">
+                    </div>
+                </div>
 
-                <!-- Project 2 (Offset to create premium asymmetric layout) -->
-                <!-- GANTI "#" DENGAN LINK BEHANCE/DRIBBBLE ATAU HALAMAN DETAIL KARYA JIKA ADA -->
-                <a href="#" class="group block md:mt-24 reveal">
-                    <div class="relative overflow-hidden rounded-lg aspect-[4/5] bg-darker border border-white/5">
-                        <!-- Foto Karya 2 -->
-                        <img src="assets/images/karya-2.jpg" alt="Project 2" onerror="this.src='https://placehold.co/800x1000/121212/00E676?text=Karya+2'" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-in-out opacity-90 group-hover:opacity-100 filter brightness-90 group-hover:brightness-100">
-                        <div class="absolute inset-0 project-overlay opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
-                        
-                        <div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <!-- GANTI KATEGORI DAN JUDUL DI BAWAH INI -->
-                            <p class="text-xs uppercase tracking-widest text-accent mb-2">Kategori Desain (Misal: Logo)</p>
-                            <h3 class="text-2xl font-display font-semibold text-white">Judul Karya Kedua</h3>
-                        </div>
+                <!-- Karya 2: Node -->
+                <div class="reveal w-full">
+                    <div class="mb-6 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Brand Identity</span>
+                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Node</h3>
                     </div>
-                </a>
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="assets/images/node.jpg" alt="Node Branding" onerror="this.src='https://placehold.co/1000x600/121212/00E676?text=Upload+node.jpg+di+GitHub'" class="w-full object-cover">
+                    </div>
+                </div>
 
-                <!-- Project 3 -->
-                <!-- GANTI "#" DENGAN LINK BEHANCE/DRIBBBLE ATAU HALAMAN DETAIL KARYA JIKA ADA -->
-                <a href="#" class="group block reveal">
-                    <div class="relative overflow-hidden rounded-lg aspect-[16/10] md:col-span-2 bg-darker border border-white/5">
-                        <!-- Foto Karya 3 (Landscape) -->
-                        <img src="assets/images/karya-3.jpg" alt="Project 3" onerror="this.src='https://placehold.co/1200x800/121212/00E676?text=Karya+3+(Landscape)'" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-in-out opacity-90 group-hover:opacity-100 filter brightness-90 group-hover:brightness-100">
-                        <div class="absolute inset-0 project-overlay opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
-                        
-                        <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                             <!-- GANTI KATEGORI DAN JUDUL DI BAWAH INI -->
-                            <p class="text-xs uppercase tracking-widest text-accent mb-2">Kategori Desain (Misal: Social Media)</p>
-                            <h3 class="text-3xl font-display font-semibold text-white">Judul Karya Ketiga</h3>
-                        </div>
+                <!-- Karya 3: Social Media -->
+                <div class="reveal w-full">
+                    <div class="mb-6 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Digital Design</span>
+                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Social Media</h3>
                     </div>
-                </a>
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="assets/images/social-media.jpg" alt="Social Media Design" onerror="this.src='https://placehold.co/1000x800/121212/00E676?text=Upload+social-media.jpg'" class="w-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Karya 4: Brochure & X-Banner -->
+                <div class="reveal w-full">
+                    <div class="mb-6 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Marketing Collaterals</span>
+                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Brochure & Banner</h3>
+                    </div>
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="assets/images/marketing.jpg" alt="Brochure and X-Banner" onerror="this.src='https://placehold.co/1000x800/121212/00E676?text=Upload+marketing.jpg'" class="w-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Karya 5: Packaging Design -->
+                <div class="reveal w-full">
+                    <div class="mb-6 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Product Design</span>
+                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Packaging</h3>
+                    </div>
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="assets/images/packaging.jpg" alt="Packaging Design" onerror="this.src='https://placehold.co/1000x1200/121212/00E676?text=Upload+packaging.jpg'" class="w-full object-cover">
+                    </div>
+                </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Contact/CTA Section -->
-    <section id="contact" class="py-40 bg-darker text-center relative overflow-hidden">
-        <!-- Subtle green glow at the bottom -->
+    <!-- Thank You / Contact Section -->
+    <section id="contact" class="py-40 bg-darker text-center relative overflow-hidden border-t border-white/10">
         <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-accent opacity-[0.03] rounded-[100%] blur-[80px] pointer-events-none"></div>
         
         <div class="max-w-4xl mx-auto px-6 reveal relative z-10">
-            <h2 class="text-sm uppercase tracking-[0.3em] text-accent mb-8">Memulai Proyek</h2>
-            <h1 class="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-12 hover:text-white text-gray-300 transition-colors duration-300 cursor-pointer">
-                Mari Berkolaborasi.
-            </h1>
+            <h2 class="text-6xl md:text-8xl font-display font-bold tracking-tighter mb-8 text-white">
+                THANK YOU
+            </h2>
+            <p class="text-xl text-gray-400 mb-12 font-light">Mari berkolaborasi untuk proyek Anda selanjutnya.</p>
             <a href="mailto:rafialfarisyemailku@gmail.com" class="inline-block bg-accent text-darkest font-semibold px-10 py-4 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_0_30px_rgba(0,230,118,0.3)]">
                 Hubungi Saya
             </a>
@@ -301,11 +286,14 @@
 
     <!-- Footer -->
     <footer class="bg-darkest py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-2xl font-display font-bold tracking-tighter text-white">
+                PORTFOLIO<span class="text-accent">.</span>
             </div>
             
             <div class="flex space-x-6 text-xl">
-                <a href="https://instagram.com/rafialfrsy" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/6287859981715" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/rafialfrsy" target="_blank" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/6287859981715" target="_blank" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-whatsapp"></i></a>
             </div>
 
             <div class="text-sm text-gray-400 font-light">
@@ -316,13 +304,12 @@
 
     <!-- Scripts -->
     <script>
-        // Intersection Observer for Smooth Reveal Animations on Scroll
         document.addEventListener("DOMContentLoaded", function() {
             const reveals = document.querySelectorAll(".reveal");
 
             const revealOptions = {
-                threshold: 0.15, // Trigger when 15% of the element is visible
-                rootMargin: "0px 0px -50px 0px" // Trigger slightly before it hits the bottom
+                threshold: 0.1, 
+                rootMargin: "0px 0px -50px 0px"
             };
 
             const revealOnScroll = new IntersectionObserver(function(entries, observer) {
@@ -331,7 +318,7 @@
                         return;
                     } else {
                         entry.target.classList.add("active");
-                        observer.unobserve(entry.target); // Stop observing once revealed
+                        observer.unobserve(entry.target);
                     }
                 });
             }, revealOptions);
