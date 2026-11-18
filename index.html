@@ -11,7 +11,6 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Menambahkan Font 'Space Grotesk' khusus untuk judul karya -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@300;400;500&family=Space+Grotesk:wght@600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <!-- FontAwesome -->
@@ -26,7 +25,7 @@
                         sans: ['Inter', 'sans-serif'],
                         display: ['Syne', 'sans-serif'],
                         handwriting: ['Caveat', 'cursive'],
-                        project: ['Space Grotesk', 'sans-serif'], /* Font baru untuk judul karya */
+                        project: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
                         dark: '#050505', 
@@ -59,14 +58,32 @@
             background: #00E676;
         }
 
+        /* --- Cinematic B-Roll Animations --- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(50px) scale(0.95);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
         }
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+        }
+
+        .b-roll-img {
+            transform: scale(1.3);
+            filter: blur(12px) brightness(0.6);
+            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1.5s ease-out;
+            will-change: transform, filter;
+        }
+        .reveal.active .b-roll-img {
+            transform: scale(1);
+            filter: blur(0px) brightness(1);
+        }
+        
+        .reveal.active .b-roll-img:hover {
+            transform: scale(1.05);
+            transition: transform 4s ease-out;
         }
     </style>
 </head>
@@ -74,7 +91,7 @@
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-darker/80 border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center h-24">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center h-24 relative z-50">
             <a href="#" class="text-2xl font-display font-bold tracking-tighter text-white">PORTFOLIO<span class="text-accent">.</span></a>
             <div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide text-gray-400">
                 <a href="#about" class="hover:text-white transition-colors duration-300">Profil</a>
@@ -82,11 +99,21 @@
                 <a href="#contact" class="hover:text-white transition-colors duration-300">Kontak</a>
             </div>
             <!-- Mobile Menu Button -->
-            <button class="md:hidden text-white text-xl">
+            <button id="mobileBtn" class="md:hidden text-white text-2xl hover:text-accent transition-colors">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay (Hidden by default) -->
+    <div id="mobileMenu" class="fixed inset-0 bg-darkest/98 backdrop-blur-xl z-40 hidden flex-col items-center justify-center space-y-8 opacity-0 transition-opacity duration-300">
+        <a href="#about" class="mobile-link text-3xl font-display font-bold text-white hover:text-accent transition-colors">Profil</a>
+        <a href="#works" class="mobile-link text-3xl font-display font-bold text-white hover:text-accent transition-colors">Karya</a>
+        <a href="#contact" class="mobile-link text-3xl font-display font-bold text-white hover:text-accent transition-colors">Kontak</a>
+        <a href="assets/cv.pdf" target="_blank" class="mobile-link mt-8 text-accent border border-accent/50 rounded-full px-6 py-2 text-lg font-medium hover:bg-accent hover:text-darkest transition-colors">
+            Download CV
+        </a>
+    </div>
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
@@ -108,36 +135,45 @@
     </section>
 
     <!-- Profile/Resume Section -->
-    <section id="about" class="py-32 bg-darker border-y border-white/10 relative overflow-hidden">
+    <section id="about" class="py-16 md:py-32 bg-darker border-y border-white/10 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             
-            <div class="flex flex-col lg:flex-row gap-16 mb-24 reveal">
-                <div class="lg:w-1/2">
+            <div class="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 mb-20 md:mb-24 reveal">
+                <div class="lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
                     <h2 class="font-handwriting text-accent text-3xl md:text-4xl mb-2">Hello I'm</h2>
-                    <h1 class="text-5xl md:text-6xl font-display font-bold text-white mb-8">Rafi Alfarisy</h1>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-display font-bold text-white mb-6 md:mb-8">Rafi Alfarisy</h1>
                     
-                    <p class="text-gray-400 font-light leading-relaxed text-lg mb-8">
-                        My name is Muhammad Rafi Alfarisy. I am a graphic designer who has studied the world of design in 2018. I am a graphic designer who has design knowledge and is currently still working in a Pharmaceutical company.
+                    <p class="text-gray-400 font-light leading-relaxed text-base md:text-lg mb-8 max-w-2xl mx-auto lg:mx-0">
+                        A dedicated Graphic Designer with a background in multimedia and design since 2018. Specializing in brand identity and packaging design, I currently deliver impactful, strategic visual solutions within the pharmaceutical industry.
                     </p>
                     
-                    <div class="flex flex-col space-y-4 text-sm text-gray-300">
-                        <a href="https://instagram.com/rafialfrsy" target="_blank" class="flex items-center space-x-3 hover:text-white transition-colors">
+                    <div class="flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-start gap-4 sm:gap-8 lg:gap-4 text-sm text-gray-300">
+                        <a href="https://instagram.com/rafialfrsy" target="_blank" class="flex items-center justify-center lg:justify-start space-x-3 hover:text-white transition-colors">
                             <i class="fab fa-instagram text-xl w-6"></i>
                             <span>@rafialfrsy</span>
                         </a>
-                        <a href="https://wa.me/6287859981715" target="_blank" class="flex items-center space-x-3 hover:text-white transition-colors">
+                        <a href="https://wa.me/6287859981715" target="_blank" class="flex items-center justify-center lg:justify-start space-x-3 hover:text-white transition-colors">
                             <i class="fab fa-whatsapp text-xl w-6"></i>
                             <span>087859981715</span>
                         </a>
-                        <a href="mailto:rafialfarisyemailku@gmail.com" class="flex items-center space-x-3 hover:text-white transition-colors">
+                        <a href="mailto:rafialfarisyemailku@gmail.com" class="flex items-center justify-center lg:justify-start space-x-3 hover:text-white transition-colors sm:col-span-2 lg:col-span-1">
                             <i class="far fa-envelope text-xl w-6"></i>
-                            <span>rafialfarisyemailku@gmail.com</span>
+                            <span class="hidden sm:inline">rafialfarisyemailku@gmail.com</span>
+                            <span class="sm:hidden">Email Me</span>
+                        </a>
+                    </div>
+
+                    <!-- TOMBOL DOWNLOAD CV -->
+                    <div class="mt-8 md:mt-10">
+                        <a href="assets/cv.pdf" target="_blank" class="inline-flex items-center space-x-3 bg-white/5 hover:bg-accent text-white hover:text-darkest border border-white/10 hover:border-accent font-medium px-8 py-3 rounded-full transition-all duration-300">
+                            <span>Download CV</span>
+                            <i class="fas fa-download"></i>
                         </a>
                     </div>
                 </div>
                 
-                <div class="lg:w-1/2 flex items-center justify-center">
-                    <div class="relative w-full max-w-md aspect-square rounded-2xl bg-gradient-to-tr from-dark to-darker border border-white/20 overflow-hidden group">
+                <div class="lg:w-1/2 flex items-center justify-center lg:justify-end">
+                    <div class="relative w-full max-w-[280px] sm:max-w-sm md:max-w-md aspect-square rounded-2xl bg-gradient-to-tr from-dark to-darker border border-white/20 overflow-hidden group">
                         <img src="assets/images/profil.jpg" alt="Rafi Alfarisy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" class="object-cover w-full h-full">
                         <div class="absolute inset-0 hidden flex-col items-center justify-center text-gray-300">
                             <i class="fas fa-camera text-4xl mb-3"></i>
@@ -181,17 +217,17 @@
                 <div>
                     <h3 class="text-3xl font-display font-bold text-white mb-8">Software</h3>
                     <div class="flex flex-wrap gap-4">
-                        <div class="flex flex-col items-center justify-center w-16 h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
-                            <span class="font-display font-bold text-[#ff9a00]">Ai</span>
+                        <div class="flex flex-col items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
+                            <span class="font-display font-bold text-[#ff9a00] text-lg md:text-base">Ai</span>
                         </div>
-                        <div class="flex flex-col items-center justify-center w-16 h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
-                            <span class="font-display font-bold text-[#31a8ff]">Ps</span>
+                        <div class="flex flex-col items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
+                            <span class="font-display font-bold text-[#31a8ff] text-lg md:text-base">Ps</span>
                         </div>
-                        <div class="flex flex-col items-center justify-center w-16 h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
-                            <span class="font-display font-bold text-[#9999ff]">Pr</span>
+                        <div class="flex flex-col items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
+                            <span class="font-display font-bold text-[#9999ff] text-lg md:text-base">Pr</span>
                         </div>
-                        <div class="flex flex-col items-center justify-center w-16 h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
-                            <i class="fas fa-video text-white text-xl"></i>
+                        <div class="flex flex-col items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-xl bg-darker border border-white/10 hover:border-accent hover:shadow-[0_0_15px_rgba(0,230,118,0.2)] transition-all duration-300">
+                            <i class="fas fa-video text-white text-lg md:text-xl"></i>
                         </div>
                     </div>
                 </div>
@@ -199,69 +235,83 @@
         </div>
     </section>
 
-    <!-- WORKS SECTION (CONTINUOUS SCROLL LAYOUT) -->
-    <section id="works" class="py-24 bg-dark">
+    <!-- WORKS SECTION -->
+    <section id="works" class="py-16 md:py-24 bg-dark">
         <div class="max-w-5xl mx-auto px-4 md:px-8">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">Karya Desain</h2>
+            <div class="text-center mb-16 md:mb-24 reveal">
+                <h2 class="text-3xl md:text-5xl font-display font-bold tracking-tight mb-4">Karya Desain</h2>
                 <div class="w-24 h-1 bg-accent mx-auto"></div>
             </div>
 
-            <!-- Susunan Vertikal Menyatu (Flex Column) -->
-            <div class="flex flex-col gap-20 md:gap-32">
+            <div class="flex flex-col gap-16 md:gap-32">
                 
                 <!-- Karya 1: Seduh Rasa -->
                 <div class="reveal w-full">
-                    <div class="mb-6 flex flex-col items-start">
-                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Brand Identity</span>
-                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Seduh Rasa</h3>
+                    <div class="mb-6 md:mb-8 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-xl md:text-2xl mb-1 ml-1">Brand Identity</span>
+                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase drop-shadow-lg mb-3 md:mb-4">Seduh Rasa</h3>
+                        <p class="text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-3xl">
+                            Seduh Rasa is a contemporary beverage product whose target market is young people. This logo is designed in a modern and simple style, integrating the abbreviation "SR" with a subtle silhouette of a drink cup.
+                        </p>
                     </div>
-                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-                        <img src="assets/images/seduh-rasa.jpg" alt="Seduh Rasa" onerror="this.src='https://placehold.co/1000x600/121212/00E676?text=Upload+seduh-rasa.jpg+di+GitHub'" class="w-full object-cover">
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
+                        <img src="assets/images/seduh-rasa.jpg" alt="Seduh Rasa" onerror="this.src='https://placehold.co/1000x600/121212/00E676?text=Upload+seduh-rasa.jpg+di+GitHub'" class="w-full object-cover b-roll-img aspect-video md:aspect-auto">
                     </div>
                 </div>
 
                 <!-- Karya 2: Node -->
                 <div class="reveal w-full">
-                    <div class="mb-6 flex flex-col items-start">
-                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Brand Identity</span>
-                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Node</h3>
+                    <div class="mb-6 md:mb-8 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-xl md:text-2xl mb-1 ml-1">Brand Identity</span>
+                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase drop-shadow-lg mb-3 md:mb-4">Node</h3>
+                        <p class="text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-3xl">
+                            A minimalist and elegant brand identity designed to reflect simplicity and warmth. The visual approach focuses on clean typography and memorable elements to establish a strong brand presence.
+                        </p>
                     </div>
-                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-                        <img src="assets/images/node.jpg" alt="Node Branding" onerror="this.src='https://placehold.co/1000x600/121212/00E676?text=Upload+node.jpg+di+GitHub'" class="w-full object-cover">
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
+                        <img src="assets/images/node.jpg" alt="Node Branding" onerror="this.src='https://placehold.co/1000x600/121212/00E676?text=Upload+node.jpg+di+GitHub'" class="w-full object-cover b-roll-img aspect-video md:aspect-auto">
                     </div>
                 </div>
 
                 <!-- Karya 3: Social Media -->
                 <div class="reveal w-full">
-                    <div class="mb-6 flex flex-col items-start">
-                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Digital Design</span>
-                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Social Media</h3>
+                    <div class="mb-6 md:mb-8 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-xl md:text-2xl mb-1 ml-1">Digital Design</span>
+                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase drop-shadow-lg mb-3 md:mb-4">Social Media</h3>
+                        <p class="text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-3xl">
+                            A collection of engaging digital templates crafted to boost audience interaction and maintain visual consistency across various social media campaigns.
+                        </p>
                     </div>
-                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-                        <img src="assets/images/social-media.jpg" alt="Social Media Design" onerror="this.src='https://placehold.co/1000x800/121212/00E676?text=Upload+social-media.jpg'" class="w-full object-cover">
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
+                        <img src="assets/images/social-media.jpg" alt="Social Media Design" onerror="this.src='https://placehold.co/1000x800/121212/00E676?text=Upload+social-media.jpg'" class="w-full object-cover b-roll-img aspect-video md:aspect-auto">
                     </div>
                 </div>
 
                 <!-- Karya 4: Brochure & X-Banner -->
                 <div class="reveal w-full">
-                    <div class="mb-6 flex flex-col items-start">
-                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Marketing Collaterals</span>
-                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Brochure & Banner</h3>
+                    <div class="mb-6 md:mb-8 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-xl md:text-2xl mb-1 ml-1">Marketing Collaterals</span>
+                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase drop-shadow-lg mb-3 md:mb-4">Brochure & Banner</h3>
+                        <p class="text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-3xl">
+                            Print marketing materials designed to effectively communicate product benefits, utilizing clear typography and eye-catching layouts for impactful offline promotions.
+                        </p>
                     </div>
-                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-                        <img src="assets/images/marketing.jpg" alt="Brochure and X-Banner" onerror="this.src='https://placehold.co/1000x800/121212/00E676?text=Upload+marketing.jpg'" class="w-full object-cover">
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
+                        <img src="assets/images/marketing.jpg" alt="Brochure and X-Banner" onerror="this.src='https://placehold.co/1000x800/121212/00E676?text=Upload+marketing.jpg'" class="w-full object-cover b-roll-img aspect-video md:aspect-auto">
                     </div>
                 </div>
 
                 <!-- Karya 5: Packaging Design -->
                 <div class="reveal w-full">
-                    <div class="mb-6 flex flex-col items-start">
-                        <span class="font-handwriting text-accent text-2xl mb-1 ml-1">Product Design</span>
-                        <h3 class="text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase">Packaging</h3>
+                    <div class="mb-6 md:mb-8 flex flex-col items-start">
+                        <span class="font-handwriting text-accent text-xl md:text-2xl mb-1 ml-1">Product Design</span>
+                        <h3 class="text-3xl sm:text-4xl md:text-5xl font-project font-bold text-white tracking-wide uppercase drop-shadow-lg mb-3 md:mb-4">Packaging</h3>
+                        <p class="text-gray-400 font-light text-base md:text-lg leading-relaxed max-w-3xl">
+                            Comprehensive packaging design developed for healthcare and pharmaceutical products, prioritizing readability, consumer trust, and adherence to industry standards.
+                        </p>
                     </div>
-                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-                        <img src="assets/images/packaging.jpg" alt="Packaging Design" onerror="this.src='https://placehold.co/1000x1200/121212/00E676?text=Upload+packaging.jpg'" class="w-full object-cover">
+                    <div class="w-full bg-darker rounded-xl overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
+                        <img src="assets/images/packaging.jpg" alt="Packaging Design" onerror="this.src='https://placehold.co/1000x1200/121212/00E676?text=Upload+packaging.jpg'" class="w-full object-cover b-roll-img aspect-[3/4] md:aspect-auto">
                     </div>
                 </div>
 
@@ -270,15 +320,15 @@
     </section>
 
     <!-- Thank You / Contact Section -->
-    <section id="contact" class="py-40 bg-darker text-center relative overflow-hidden border-t border-white/10">
+    <section id="contact" class="py-24 md:py-40 bg-darker text-center relative overflow-hidden border-t border-white/10">
         <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-accent opacity-[0.03] rounded-[100%] blur-[80px] pointer-events-none"></div>
         
         <div class="max-w-4xl mx-auto px-6 reveal relative z-10">
-            <h2 class="text-6xl md:text-8xl font-display font-bold tracking-tighter mb-8 text-white">
+            <h2 class="text-5xl md:text-8xl font-display font-bold tracking-tighter mb-6 md:mb-8 text-white">
                 THANK YOU
             </h2>
-            <p class="text-xl text-gray-400 mb-12 font-light">Mari berkolaborasi untuk proyek Anda selanjutnya.</p>
-            <a href="mailto:rafialfarisyemailku@gmail.com" class="inline-block bg-accent text-darkest font-semibold px-10 py-4 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_0_30px_rgba(0,230,118,0.3)]">
+            <p class="text-lg md:text-xl text-gray-400 mb-10 md:mb-12 font-light">Mari berkolaborasi untuk proyek Anda selanjutnya.</p>
+            <a href="mailto:rafialfarisyemailku@gmail.com" class="inline-block bg-accent text-darkest font-semibold px-8 py-3 md:px-10 md:py-4 rounded-full hover:scale-105 hover:bg-white transition-all duration-300 shadow-[0_0_30px_rgba(0,230,118,0.3)]">
                 Hubungi Saya
             </a>
         </div>
@@ -305,8 +355,8 @@
     <!-- Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Animasi Scroll B-Roll (Sudah Ada)
             const reveals = document.querySelectorAll(".reveal");
-
             const revealOptions = {
                 threshold: 0.1, 
                 rootMargin: "0px 0px -50px 0px"
@@ -314,17 +364,46 @@
 
             const revealOnScroll = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add("active");
-                        observer.unobserve(entry.target);
-                    }
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add("active");
+                    observer.unobserve(entry.target);
                 });
             }, revealOptions);
 
             reveals.forEach(reveal => {
                 revealOnScroll.observe(reveal);
+            });
+
+            // LOGIKA MENU MOBILE (Baru Ditambahkan)
+            const mobileBtn = document.getElementById('mobileBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    // Timeout tipis agar transisi opacity bekerja
+                    setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+                    mobileBtn.innerHTML = '<i class="fas fa-times"></i>'; // Ikon Silang (X)
+                    document.body.style.overflow = 'hidden'; // Kunci scroll di belakang
+                } else {
+                    mobileMenu.classList.add('opacity-0');
+                    setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                    mobileBtn.innerHTML = '<i class="fas fa-bars"></i>'; // Ikon Garis Tiga (Burger)
+                    document.body.style.overflow = 'auto'; // Buka scroll
+                }
+            }
+
+            // Buka/Tutup saat tombol diklik
+            mobileBtn.addEventListener('click', toggleMenu);
+
+            // Tutup menu otomatis saat link diklik (menuju bagian web)
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (isMenuOpen) toggleMenu();
+                });
             });
         });
     </script>
