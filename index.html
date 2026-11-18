@@ -26,6 +26,16 @@
         }
     </style>
 
+         <!-- 2. TAMBAHKAN KODE FONT LOKAL ANDA DI SINI -->
+    <style>
+        @font-face {
+            font-family: 'LondonaFont';
+            src: url('assets/font/Londona-regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+
     <!-- Tailwind Config for Custom Fonts and Colors -->
     <script>
         tailwind.config = {
@@ -38,6 +48,8 @@
                         project: ['Space Grotesk', 'sans-serif'],
                         /* Ini jalur khusus HANYA untuk Graphic Design */
                         autography: ['AutographyFont', 'cursive'],
+                        /* Ini jalur khusus HANYA untuk Portfolio */
+                        londona: ['LondonaFont', 'cursive'],
                     },
                     colors: {
                         dark: '#050505', 
@@ -104,7 +116,7 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-darker/80 border-b border-white/5">
         <div class="max-w-7xl mx-auto px-[18px] md:px-12 flex justify-between items-center h-24 relative z-50">
-            <a href="#" class="text-2xl font-display font-bold tracking-tighter text-white">PORTFOLIO<span class="text-accent">.</span></a>
+            <a href="#" class="text-2xl font-londona font-bold tracking-tighter text-white">PORTFOLIO<span class="text-accent">.</span></a>
             <div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide text-gray-400">
                 <a href="#about" class="hover:text-white transition-colors duration-300">Profil</a>
                 <a href="#works" class="hover:text-white transition-colors duration-300">Karya</a>
